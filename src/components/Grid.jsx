@@ -388,17 +388,18 @@ class Grid extends Component {
   }
 
   replayLevel = (level) => {
-    const { nodes } = this.state;
+    const { nodes, height, width } = this.state;
     const { positions } = level;
 
-    for (let i = 0; i < nodes.length; i++)
-      for (let j = 0; j < nodes.length; j++) {
+    for (let i = 0; i < height; i++) {
+      for (let j = 0; j < width; j++) {
         nodes[i][j].visited = false;
         nodes[i][j].discovered = false;
         nodes[i][j].isPath = false;
         nodes[i][j].obstacle = false;
         nodes[i][j].obstacleFree = false;
       }
+    }
 
     this.setState({ nodes });
 
