@@ -1,5 +1,5 @@
 <h2>pathfinding</h2> <h3>1. Installation:</h3> 
-clone --> npm install --> npm start 
+clone --> open bash in cloned folder/code editor --> npm install --> npm start 
 <h3>2. Instructions:</h3> in-game 
 <h3>3. Notes:</h3> 
 - grid size 1x1 can't be selected <br /> 
