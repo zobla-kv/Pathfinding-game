@@ -265,7 +265,8 @@ class Grid extends Component {
 			const y2 = nodes[i].position[1];
 			const dx = x1 - x2;
 			const dy = y1 - y2;
-			nodes[i].heuristic = Math.abs(dx + dy);
+			// nodes[i].heuristic = Math.sqrt(dx * dx + dy * dy);
+			nodes[i].heuristic = Math.abs(dx) + Math.abs(dy);
 		}
 		const minNodes = [];
 		let min = nodes[0].heuristic;
@@ -400,7 +401,10 @@ class Grid extends Component {
 	generatePath = () => {
 		const { nodes } = this.state;
 		const { startPosition, endPosition } = this.props;
-		const { getNeighbours, startRunner, setFirstAsCurrent } = this;
+		const {
+			getNeighbours, startRunner, setFirstAsCurrent,
+			clearNodesForNextAlg, generatePath,
+		} = this;
 		let curNode = nodes[startPosition[0]][startPosition[1]];
 		const visitedNodes = [];
 		while (!curNode.endNode) {
@@ -421,13 +425,16 @@ class Grid extends Component {
 		// calculate distance
 		const dx = endPosition[0] - startPosition[0];
 		const dy = endPosition[1] - startPosition[1];
-		const distance = Math.abs(dx + dy) + 1;
+		const distance = Math.abs(dx) + Math.abs(dy) + 1;
 		// algorithm doesn't return shortest path
 		// calls itself until it does
 		// will ensure new path that obstales are not generated on for every level
-		if (path.length() !== distance) {
-			this.clearNodesForNextAlg();
-			return this.generatePath();
+		// !! critical spot !! //
+		// recursion may cause brief freeze
+		// if commented out will run smooth but may cause infinite loop in getObstacles
+		if (path.length() > distance) {
+			clearNodesForNextAlg();
+			return generatePath();
 		}
 		return path;
 	}
