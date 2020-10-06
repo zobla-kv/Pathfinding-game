@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
-  opacity: ${(props) => props.opacity};
+  opacity: ${props => props.opacity};
 `;
 
 export const Header = styled.div`
@@ -36,7 +36,7 @@ export const Option = styled.div`
   text-align: center;
   font-size: 25px;
 
-  @media (max-width: 560px) {
+  @media (max-width: 576px) {
     margin: auto;
     margin-bottom: 30px;
   }
@@ -86,12 +86,12 @@ export const NoAlg = styled.span`
 export const Label = styled.label`
   font-size: 16px;
   position: relative;
-  top: ${(props) => (props.moveTop ? "-22px" : "-10px")};
+  top: ${props => (props.moveTop ? "-22px" : "-10px")};
 `;
 
 export const Input = styled.input`
   position: relative;
-  top: ${(props) => (props.moveTop ? "-30px" : "-18px")};
+  top: ${props => (props.moveTop ? "-30px" : "-18px")};
   border-radius: 8px;
   outline: none;
   border-color: white;
@@ -111,16 +111,14 @@ export const Button = styled.button`
   color: #ffffff;
   font-size: 18px;
   font-weight: bold;
+
   &:hover {
     cursor: pointer;
     border: 2px solid white;
   }
 
-  @media (max-width: 833px) {
-    margin-top: 0;
-  }
-
-  @media (max-width: 560px) {
+  @media (max-width: 576px) {
+	margin-top: 0;
     width: 80%;
   }
 `;

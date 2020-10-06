@@ -1,38 +1,70 @@
 import React from "react";
+import PropTypes from "prop-types";
+
 // couldn't use styled component here as I was getting noticeable performance drop
-// code below would replace current one if used
+const Node = ({
+	info: {
+		startNode, endNode, visited, discovered, obstacle, runner,
+	},
+	legend,
+}) => {
+	const getBgc = () => {
+		if (startNode) {
+			return "blue";
+		}
+		if (endNode) {
+			return "red";
+		}
+		if (obstacle) {
+			return "saddleBrown";
+		}
+		if (visited) {
+			return "cyan";
+		}
+		if (discovered) {
+			return "darkViolet";
+		}
+	};
 
-// import { NodeWrapper } from "../styled/Game";
-// const Node = ({ info, onStart }) => (<NodeWrapper info={info} onClick={() => onStart(info.position)} />
-// );
+	const getBorder = () => {
+		if (legend) {
+			return "none";
+		}
+		return "1px solid black";
+	};
 
-//prettier-ignore
-const Node = ({ info: { position, startNode, endNode, visited, discovered, obstacle, isPath}, onStart}) => {
+	const nodeStyle = {
+		height: 25,
+		width: 25,
+		border: getBorder(),
+		display: "inline-block",
+		marginBottom: -5,
+		backgroundColor: getBgc(),
+	};
 
-  const getBgc = () => {
-    if (startNode) return "blue";
-    else if (endNode) return "red";
-    else if (obstacle) return "saddleBrown";
-    else if (isPath) return "yellow";
-    else if (visited) return "cyan";
-    else if (discovered) return "darkViolet";
-  };
+	const runnerStyle = {
+		height: 25,
+		width: 25,
+		backgroundImage: "url(runner.png)",
+		backgroundSize: "100%",
+	};
 
-  const style = {
-    width: 25,
-    height: 25,
-    border: "1px solid black",
-    display: "inline-block",
-    marginBottom: -5,
-    backgroundColor: getBgc()
-  }
+	return (
+		<div style={nodeStyle}>
+			{runner && <div style={runnerStyle} />}
+		</div>
+	);
+};
 
-  return (
-    <div
-      style={style}
-      onClick={() => onStart(position)}
-    ></div>
-  );
+Node.propTypes = {
+	info: PropTypes.oneOfType([PropTypes.object]).isRequired,
+	runner: PropTypes.bool,
+	legend: PropTypes.bool,
+};
+
+Node.defaultProps = {
+	runner: false,
+	legend: false,
 };
 
 export default Node;
