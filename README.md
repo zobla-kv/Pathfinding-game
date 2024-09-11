@@ -1,4 +1,8 @@
-<h2>pathfinding</h2> 
+<h3>Functionalities:</h3>
+- Choose grid size and algorithms you want to run
+- Observe Parallel run of the multiple algorithms on the same level
+- After level is complete show statistics of each algorithm (number of nodes searched, time it took to find etc.)
+- Watch replay of the level
 <h3>1. Installation:</h3> 
 clone --> open bash in cloned folder/code editor --> npm install --> npm start 
 <h3>2. Notes:</h3> 
