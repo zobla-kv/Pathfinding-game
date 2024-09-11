@@ -1,9 +1,9 @@
 <h3>Functionalities:</h3>
-- Choose grid size and algorithms you want to run
-- Observe Parallel run of the multiple algorithms on the same level
-- After level is complete show statistics of each algorithm (number of nodes searched, time it took to find etc.)
+- Choose grid size and algorithms you want to run <br /> 
+- Observe Parallel run of the multiple algorithms on the same level <br /> 
+- After level is complete show statistics of each algorithm (number of nodes searched, time it took to find etc.) <br /> 
 - Watch replay of the level
-<h3>1. Installation:</h3> 
+<h3>1. Installation:</h3>
 clone --> open bash in cloned folder/code editor --> npm install --> npm start 
 <h3>2. Notes:</h3> 
 - grid height or width can't be 1 <br /> 
