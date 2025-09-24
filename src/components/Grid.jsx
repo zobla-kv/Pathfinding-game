@@ -45,9 +45,7 @@ class Grid extends Component {
 	}
 
 	componentDidMount = () => {
-		const { startPosition, endPosition } = this.props;
-		const { handlePlacement } = this;
-		handlePlacement(startPosition, endPosition);
+		this.handlePlacement(this.props.startPosition, this.props.endPosition);
 	}
 
 	getGridStyle = () => {
@@ -506,16 +504,21 @@ class Grid extends Component {
 		} = this.props;
 		for (let i = 0; i < height; i++) {
 			for (let j = 0; j < width; j++) {
+				nodes[i][j].runner = false;
 				nodes[i][j].visited = false;
 				nodes[i][j].discovered = false;
 				nodes[i][j].obstacle = false;
 				nodes[i][j].obstacleFree = false;
+				nodes[i][j].endNode = false; 
+      	nodes[i][j].startNode = false; 
 			}
 		}
-		nodes[endPosition[0]][endPosition[1]].runner = false;
-		nodes[endPosition[0]][endPosition[1]].obstacleFree = true;
 		nodes[startPosition[0]][startPosition[1]].runner = true;
 		nodes[startPosition[0]][startPosition[1]].obstacleFree = true;
+		nodes[startPosition[0]][startPosition[1]].startNode = true;
+
+		nodes[endPosition[0]][endPosition[1]].endNode = true;
+
 		this.setState({ nodes });
 	}
 

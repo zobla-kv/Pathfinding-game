@@ -38,8 +38,6 @@ class Config extends Component {
 		};
 		this.height = React.createRef();
 		this.width = React.createRef();
-		this.startPosition = React.createRef();
-		this.endPosition = React.createRef();
 	}
 
 	handleAdd = (alg) => {
@@ -61,12 +59,9 @@ class Config extends Component {
 	validateInput = async () => {
 		let { warningMessage } = this.state;
 		const { selectedAlgs } = this.state;
-		const { positionToArray } = this;
 		const { onStart } = this.props;
 		const height = this.height.current.value;
 		const width = this.width.current.value;
-		const startPosition = positionToArray(this.startPosition.current.value);
-		const endPosition = positionToArray(this.endPosition.current.value);
 		if (
 			!height ||
 			!width ||
@@ -78,18 +73,6 @@ class Config extends Component {
 			width < 2
 		) {
 			warningMessage = "Invalid grid size";
-		} else if (
-			isNaN(startPosition[0]) || isNaN(startPosition[1]) ||
-			startPosition[0] < 0 || startPosition[0] > height - 1 ||
-			startPosition[1] < 0 || startPosition[1] > width - 1) {
-			warningMessage = "invalid start position";
-		} else if (
-			isNaN(endPosition[0]) || isNaN(endPosition[1]) ||
-			endPosition[0] < 0 || endPosition[0] > height - 1 ||
-			endPosition[1] < 0 || endPosition[1] > width - 1) {
-			warningMessage = "invalid end position";
-		} else if ((startPosition[0] === endPosition[0]) && (startPosition[1] === endPosition[1])) {
-			warningMessage = "start and end can't have same positions";
 		} else if (selectedAlgs.length === 0) {
 			warningMessage = "No algorithms selected";
 		}
@@ -101,8 +84,6 @@ class Config extends Component {
 				height: Number(height),
 				width: Number(width),
 				algs: selectedAlgs,
-				startPosition,
-				endPosition,
 			};
 			onStart(config);
 		}
@@ -112,13 +93,6 @@ class Config extends Component {
 		this.setState({ warningMessage: "" });
 	}, 2000);
 
-	positionToArray(position) {
-		const array = [];
-		const x = Number(position.split(",")[0]);
-		const y = Number(position.split(",")[1]);
-		array.push(x, y);
-		return array;
-	}
 
 	render() {
 		const { algs, selectedAlgs, warningMessage } = this.state;
@@ -148,14 +122,14 @@ class Config extends Component {
 						<Label moveTop>Width (max 13)</Label>
 						<Input type="text" moveTop ref={this.width} />
 					</Option>
-					<Option>
+					{/* <Option>
 						<OptionHeader>Select start/end</OptionHeader>
 						<Label>Start position</Label>
 						<Input type="text" ref={this.startPosition} />
 						<br />
 						<Label moveTop>End position</Label>
 						<Input type="text" moveTop ref={this.endPosition} />
-					</Option>
+					</Option> */}
 					<Option>
 						<Button onClick={validateInput}>Play</Button>
 						<br />

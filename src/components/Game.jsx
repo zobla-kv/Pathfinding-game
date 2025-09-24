@@ -26,9 +26,17 @@ import { Warning } from "../styled/Config";
 class Game extends Component {
 	constructor(props) {
 		super(props);
-		const { config: { algs } } = this.props;
+		const { config: { algs, width, height } } = this.props;
 		const { manual } = modes;
+
+		const startPosition = this.getRandomStartPosition(width, height);
+		const endPosition = this.getRandomEndPosition(width, height, startPosition);
+
 		this.state = {
+			width,
+			height,
+			startPosition,
+			endPosition,
 			level: 1,
 			levelsCompleted: [],
 			algs,
@@ -39,11 +47,32 @@ class Game extends Component {
 			playClickable: true,
 			nextClickable: true,
 			exitReplayClickable: false,
-			replayMode: false,
+			replayMode: false,	
 			replayLevel: 0,
 			replayWarning: false,
 		};
 		this.gridRefs = [];
+	}
+
+	getRandomStartPosition = (width, height) => {
+		return [
+			Math.floor(Math.random() * width),
+			Math.floor(Math.random() * height)
+		]
+	}
+
+	getRandomEndPosition = (width, height, startPosition) => {
+    let endPosition;
+    do {
+        endPosition = [
+            Math.floor(Math.random() * width),
+            Math.floor(Math.random() * height)
+        ];
+    } while (
+			startPosition[0] === endPosition[0] && 
+			startPosition[1] === endPosition[1]
+		);
+    return endPosition;
 	}
 
 	handleInfo = (algInfo) => {
@@ -121,13 +150,14 @@ class Game extends Component {
 
 	handleNextLevel = () => {
 		const {
-			level, algs, replayMode, levelsCompleted,
+			level, algs, replayMode, levelsCompleted, width, height, startPosition
 		} = this.state;
+
 		if (replayMode) return;
 		for (let i = 0; i < algs.length; i++) {
 			this.gridRefs[i].clearNodesForNextLevel();
 		}
-		this.setState({ level: level + 1 });
+		this.setState({ level: level + 1, endPosition: this.getRandomEndPosition(width, height, startPosition) });
 		const obstacles = this.gridRefs[0].getObstacles(levelsCompleted.length);
 		setTimeout(() => {
 			for (let i = 0; i < algs.length; i++) {
@@ -269,10 +299,8 @@ class Game extends Component {
 			replayMode, replayLevel, exitReplayClickable, replayWarning, algs,
 		} = this.state;
 		const {
-			config: {
-				algs: selectedAlgs, width, height, startPosition, endPosition,
-			},
-		} = this.props;
+			algs: selectedAlgs, width, height
+		} = this.state;
 		const {
 			handlePlay, handleAlgFinish, handleNextLevel, handleInfo, displayMessage,
 			handleModeChange, handleReplay, handleLevelReturn, handleGameOver, handleConfig,
@@ -329,8 +357,8 @@ class Game extends Component {
 								ref={gridRef => this.gridRefs[i] = gridRef}
 								height={height}
 								width={width}
-								startPosition={startPosition}
-								endPosition={endPosition}
+								startPosition={this.state.startPosition}
+								endPosition={this.state.endPosition}
 								alg={e}
 								level={level}
 								onAlgFinish={handleAlgFinish}

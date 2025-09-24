@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-// couldn't use styled component here as I was getting noticeable performance drop
 const Node = ({
 	info: {
 		startNode, endNode, visited, discovered, obstacle, runner,
@@ -45,8 +44,10 @@ const Node = ({
 	const runnerStyle = {
 		height: 25,
 		width: 25,
-		backgroundImage: "url(runner.png)",
+		backgroundImage: "url(runner-new.png)",
 		backgroundSize: "100%",
+		position: 'relative',
+		top: '-2px'
 	};
 
 	return (

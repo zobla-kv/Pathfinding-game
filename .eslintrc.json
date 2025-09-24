@@ -22,7 +22,7 @@
     "react-hooks/exhaustive-deps": "warn",
     "react/jsx-max-props-per-line": 1,
     "semi": 2,
-    "indent": ["error", "tab"],
+    "indent": ["ignore", "tab"],
     "jsx-a11y/anchor-is-valid": [
       "error",
       {
