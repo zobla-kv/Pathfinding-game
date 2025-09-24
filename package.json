@@ -2,6 +2,7 @@
   "name": "pathfinding",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://USERNAME.github.io/REPO-NAME",
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
@@ -22,14 +23,17 @@
     "eslint-plugin-import": "2.22.0",
     "eslint-plugin-jsx-a11y": "6.4.1",
     "eslint-plugin-react": "7.20.6",
-    "eslint-plugin-react-hooks": "2.5.0"
+    "eslint-plugin-react-hooks": "2.5.0",
+    "gh-pages": "^6.1.1"
   },
   "scripts": {
-  "start": "react-scripts --openssl-legacy-provider start",
-  "build": "react-scripts --openssl-legacy-provider build",
+    "start": "react-scripts --openssl-legacy-provider start",
+    "build": "react-scripts --openssl-legacy-provider build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "eslint": "npx eslint -- ./src/."
+    "eslint": "npx eslint -- ./src/.",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"
