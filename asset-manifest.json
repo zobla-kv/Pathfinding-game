@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.js": "/Pathfinding-game/static/js/main.b70278f5.chunk.js",
-    "main.js.map": "/Pathfinding-game/static/js/main.b70278f5.chunk.js.map",
+    "main.js": "/Pathfinding-game/static/js/main.d05f6814.chunk.js",
+    "main.js.map": "/Pathfinding-game/static/js/main.d05f6814.chunk.js.map",
     "runtime-main.js": "/Pathfinding-game/static/js/runtime-main.0aed432f.js",
     "runtime-main.js.map": "/Pathfinding-game/static/js/runtime-main.0aed432f.js.map",
     "static/js/2.ac9ae416.chunk.js": "/Pathfinding-game/static/js/2.ac9ae416.chunk.js",
     "static/js/2.ac9ae416.chunk.js.map": "/Pathfinding-game/static/js/2.ac9ae416.chunk.js.map",
     "index.html": "/Pathfinding-game/index.html",
-    "precache-manifest.c38e69c1b1774064a2a13b7a43c8ad6c.js": "/Pathfinding-game/precache-manifest.c38e69c1b1774064a2a13b7a43c8ad6c.js",
+    "precache-manifest.fb7110e525ce76117b94557a7ef6c3bb.js": "/Pathfinding-game/precache-manifest.fb7110e525ce76117b94557a7ef6c3bb.js",
     "service-worker.js": "/Pathfinding-game/service-worker.js",
     "static/js/2.ac9ae416.chunk.js.LICENSE.txt": "/Pathfinding-game/static/js/2.ac9ae416.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.0aed432f.js",
     "static/js/2.ac9ae416.chunk.js",
-    "static/js/main.b70278f5.chunk.js"
+    "static/js/main.d05f6814.chunk.js"
   ]
 }
